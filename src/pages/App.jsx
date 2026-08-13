@@ -1,21 +1,24 @@
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
-import { NavBar } from '../components/ui/Navbar'
-import { Login } from './login.jsx'
+//import { useState } from 'react'
+//import { Routes, Route } from 'react-router-dom'
+//import { NavBar } from '../components/ui/Navbar'
+import { SignIn } from '../components/ui/SignIn'
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  //const [count, setCount] = useState(0)
 
   return (
     <>
       <main>
-        <NavBar />
+        <SignIn />
+        {/* <NavBar /> 
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<div>Home Page</div>} />
           <Route path="/about" element={<div>About Page</div>} />
           <Route path="/contact" element={<div>Contact Page</div>} />
         </Routes>
+
+     
         <button
           type="button"
           className="counter"
@@ -23,6 +26,7 @@ const App = () => {
         >
           Count is {count}
         </button>
+        */}
       </main>
     </>
   )

@@ -1,3 +1,4 @@
+/*
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -17,7 +18,7 @@ export const NavBar = () => {
                     </div>
                     <div className="flex flex-2 justify-start gap-x-10 w-full sm:items-stretch">
                         <div className="flex items-center mr-5">
-                            <img src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" className="h-8 w-auto mx-2.5 sm:ml-0" />
+                            <img src="/src/assets/mysymptracLogo.jpg" alt="MySympTrac" className="h-8 w-auto mx-2.5 sm:ml-0" />
                             <Link to="/home" className=" text-white font-bold">MySympTrac</Link>
                         </div>
                         <div className="hidden lg:ml-6 sm:block">
@@ -29,7 +30,7 @@ export const NavBar = () => {
                         </div>
                     </div>
                     <div className="flex flex-1 justify-end">
-                        <Link to="/login" className="rounded-md bg-[#6366f1] px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#4f46e5]">Sign Up</Link>
+                        <Link to="/login" className="rounded-md bg-royal-purple px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-light-violet">Sign Up</Link>
                     </div>
                 </div>
                 </div>
@@ -44,3 +45,4 @@ export const NavBar = () => {
         </nav>
     )
 }
+/*

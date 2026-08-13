@@ -7,6 +7,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+    --color-deep-purple: var(--deep-purple);
+    --color-royal-purple: var(--royal-purple);
+    --color-light-violet: var(--light-violet);
+    --color-magenta-pink: var(--magenta-pink);
+    --color-light-pink: var(--light-pink);
+
     --font-heading: var(--font-sans);
     --font-sans: 'Inter Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
@@ -50,6 +56,12 @@
 }
 
 :root {
+    --deep-purple: #301080;
+    --royal-purple: #8060e0;
+    --light-violet: #A080e0;
+    --magenta-pink: #e080c0;
+    --light-pink: #d080d0;
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
