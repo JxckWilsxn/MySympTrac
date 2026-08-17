@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "../../assets/mysymptracLogo.jpg";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 export const SignIn = () => {
@@ -56,7 +57,7 @@ export const SignIn = () => {
     return (
         <section id="sign-in-card" className="flex rounded-xl mx-auto w-full min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <img src="/src/assets/mysymptracLogo.jpg" alt="MySympTrac" className="mx-auto h-28 w-auto" />
+                <img src={logo} alt="MySympTrac" className="mx-auto h-28 w-auto" />
                 <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-deep-purple">Sign in to your account</h2>
             </div>
 
@@ -65,7 +66,7 @@ export const SignIn = () => {
                     <div id="email-field">
                         <label htmlFor="email" className="block text-sm/6 font-medium text-deep-purple">Email address</label>
                         <div className="flex items-center mt-2 border border-gray-200 rounded-xl bg-white/5 relative focus-within:ring-2 focus-within:ring-royal-purple">
-                            <input id="email" type="email" name="email" value={formInput.email} required autoComplete="email" placeholder="Email@example.com" className="block w-full rounded-xl bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-400 sm:text-sm/6  border-gray-200 p-2" />
+                            <input id="email" type="email" name="email" value={formInput.email} onChange={handleInputChange} required autoComplete="email" placeholder="Email@example.com" className="block w-full rounded-xl bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-400 sm:text-sm/6  border-gray-200 p-2" />
                         </div>
                     </div>
 
