@@ -2,7 +2,7 @@ import { useState } from "react";
 import logo from "../../assets/mysymptracLogo.jpg";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
-export const SignIn = () => {
+export const SignIn = ({ onAuthSuccess }) => {
     const [signUp, setSignUp] = useState(false);
 
     const [formInput, setFormInput] = useState({
@@ -84,6 +84,34 @@ export const SignIn = () => {
         }
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const isFormReady = () => {
+            formInput.email !== "" &&
+            formInput.password !== "" &&
+            emailValid &&
+            passwordValid;
+        }
+
+        const isSignUpValid = signUp ? (formInput.confirmPassword !== "" && passwordsMatch) : true;
+       
+         console.log("Form values checked:", {
+        emailInput: formInput.email,
+        passwordInput: formInput.password,
+        emailValidState: emailValid,
+        passwordValidState: passwordValid,
+        isFormReady: isFormReady,
+        isSignUpValid: isSignUpValid
+    });
+
+    if (isFormReady && isSignUpValid) {
+        onAuthSuccess();
+    } else {
+        console.log("Validation failed. onAuthSuccess was not called.");
+    }        
+    }
+
     return (
         <section id="sign-in-card" className="flex rounded-xl mx-auto w-full min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -92,11 +120,11 @@ export const SignIn = () => {
             </div>
 
             <div className="mt-10 w sm:mx-auto sm:w-full sm:max-w-sm">
-                <form action="#" method="POST" className="space-y-6">
+                <form action="#" onSubmit={handleSubmit} method="POST" className="space-y-6">
                     <div id="email-field">
                         <label htmlFor="email" className="block text-sm/6 font-medium text-deep-purple">Email or Phone Number</label>
                         <div className="flex items-center mt-2 border border-gray-200 rounded-xl bg-white/5 relative focus-within:ring-2 focus-within:ring-royal-purple">
-                            <input id="email" type="text" name="email" value={formInput.email} onChange={handleInputChange} required autoComplete="username" placeholder="Email@example.com" className="block w-full rounded-xl bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-400 sm:text-sm/6  border-gray-200 p-2" />
+                            <input id="email" type="text" name="email" value={formInput.email} onChange={handleInputChange} required autoComplete="username" placeholder="Email or Phone Number" className="block w-full rounded-xl bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-400 sm:text-sm/6  border-gray-200 p-2" />
                         </div>
                         <p id="email-error-message" className={`${emailValid && phoneNumValid ? "hidden" : "block"} mt-2 text-red-500 text-sm`}>Please enter a valid email or phone number.</p>
                     </div>
