@@ -12,10 +12,28 @@ export const SignIn = () => {
     });
 
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [emailValid, setEmailValid] = useState(true);
+    const [phoneNumValid, setPhoneNumValid] = useState(true);
     const [passwordValid, setPasswordValid] = useState(true);
     const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-    // Regex test
+    // Regex tests
+      const validateEmail = (value) => {
+        const isValid = /^\S+@\S+\.\S+$/
+        .test(value);
+
+        setEmailValid(isValid);
+        return isValid;
+    }
+
+    const validatePhoneNum = (value) => {
+        const isValid = /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/
+        .test(value);
+
+        setPhoneNumValid(isValid);
+        return isValid;
+    }
+
     const validatePassword = (value) =>  {
         const isValid = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
         .test(value);   // Tests password input if it matches correct structure with true/false
@@ -36,11 +54,23 @@ export const SignIn = () => {
             if (value === "") {
                 setPasswordValid(true); 
             } else {
-                validatePassword(value); // Check against regex test
+                // Check against regex test
+                validatePassword(value);
             }
             // Run check if user on register page and if confirm password input contains text
             if (signUp && formInput.confirmPassword !== "") {
                 setPasswordsMatch(value === formInput.confirmPassword);
+            }
+        } else if (name === "email") {
+            if (value === "") {
+                setEmailValid(true);
+                setPhoneNumValid(true)
+            } else if (!value.includes("@")) {
+                setEmailValid(true);
+                validatePhoneNum(value)
+            } else {
+                validateEmail(value)
+                setPhoneNumValid(true)
             }
         }
 
@@ -64,10 +94,11 @@ export const SignIn = () => {
             <div className="mt-10 w sm:mx-auto sm:w-full sm:max-w-sm">
                 <form action="#" method="POST" className="space-y-6">
                     <div id="email-field">
-                        <label htmlFor="email" className="block text-sm/6 font-medium text-deep-purple">Email address</label>
+                        <label htmlFor="email" className="block text-sm/6 font-medium text-deep-purple">Email or Phone Number</label>
                         <div className="flex items-center mt-2 border border-gray-200 rounded-xl bg-white/5 relative focus-within:ring-2 focus-within:ring-royal-purple">
-                            <input id="email" type="email" name="email" value={formInput.email} onChange={handleInputChange} required autoComplete="email" placeholder="Email@example.com" className="block w-full rounded-xl bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-400 sm:text-sm/6  border-gray-200 p-2" />
+                            <input id="email" type="text" name="email" value={formInput.email} onChange={handleInputChange} required autoComplete="username" placeholder="Email@example.com" className="block w-full rounded-xl bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-400 sm:text-sm/6  border-gray-200 p-2" />
                         </div>
+                        <p id="email-error-message" className={`${emailValid && phoneNumValid ? "hidden" : "block"} mt-2 text-red-500 text-sm`}>Please enter a valid email or phone number.</p>
                     </div>
 
                     <div id="password-field">
